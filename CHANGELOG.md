@@ -1,3 +1,80 @@
+<<<<<<< HEAD
+=======
+# 1.8.5
+
+## Apple Silicon Support
+
+This version provides native Apple Silicon/M1 support, a.k.a. the darwin/arm64 architecture. Make sure to download the correct update file (either x64 for Intel-based Macs or arm64 for the new Apple Silicon chips).
+
+## A Note to Apple Silicon users
+
+If you possess one of the new Apple devices sporting Apple's M1 chip, please see whether or not the application is able to run the built-in pandoc (which is still compiled for 64 bit). If your bundled exporter fails, please report an issue.
+
+## A Note to Windows ARM users
+
+As of the current development build, Microsoft has finished support for running 64 bit applications on ARM computers. However, this is not yet officially released, so the bundled Pandoc might not work and you have to return back to the system-wide installation. However, if the bundled 64 bit Pandoc _does_ work on your ARM computer, please notify us so we know that we can officially support Windows ARM again!
+
+## GUI and Functionality
+
+- **Feature**: 64bit applications will now run the built-in Pandoc. To see whether your application runs using the bundled Pandoc, open the developer logs and look for "pandoc." If Zettlr has used the built-in Pandoc for an export, the pandoc command will not begin with "pandoc" but with the full, absolute path to the bundled Pandoc binary. **If your application does use the bundled Pandoc, you can uninstall any system-wide Pandoc installationn; Zettlr should still be able to export. If not, please consider reporting a bug**!
+- **Feature**: macOS-users can now use horizontal scrolling instead of using the arrow button to toggle between the file tree and the file list (only available in thin file manager mode; this behaves exactly like back and forth navigating in browsers such as Safari and Chrome).
+- **Enhancement**: Added a new option to allow spaces during autocompletion (of tags, citations, or internal links).
+- **Enhancement**: Added a configuration option to programmatically set the editor's base font size. Additionally, the zooming now works reliably. (This setting is independent of the base font size above.)
+- **Enhancement**: Values from the AutoCorrect replacement table will now also be indicated as correct, so you don't have to add them to your user dictionary anymore.
+- **Enhancement**: Added an option to prevent auto-searches when following Zettelkasten-links.
+- **Enhancement**: Zettlr now recognizes the `tags` frontmatter property. _Please note that Pandoc does not recognize the `tags`-property, so if you need tags to be processed with Pandoc, consider using the `keywords`-property._
+- Made the dialogs' tab lists more accessible for screen readers.
+- Fixed the other files's extension icons in the sidebar -- they now also display in dark mode.
+- Fixes to the stylesheets.
+- Fix too dark colours for some variables in CodeMirror.
+- Added a new CSS variable that allows you to set the font-size of the whole application, `--base-font-size`. You can set it in your custom CSS to increase or decrease the overall font-size of everything persistently. Remember to apply it to the `:root`-pseudo element.
+- Fixed a race condition in the dictionary provider that would render spellchecking unfunctional in certain edge cases.
+- Revamped the about dialog's other project tab.
+- Removed the deprecation warning for deprecated installations.
+- Improved the preferences explanations with regard to AutoCorrect modes and the Magic Quotes section (some require adaptions by the users in the corresponding translations!)
+- Re-built the QuickLooks. Now they share even more code with the rest of the app, should react more snappy, and are more responsive then ever.
+- Fixed a few logical bugs where the meaning of the "Overwrite file?"-dialog's buttons were swapped, overwriting a file if you chose "Cancel" and not overwriting a file if you chose "Ok."
+- Fixed a bug that would mistakenly show a file twice in the file manager if a file rename or the creation of a new file would overwrite a file that was already present.
+- Added a switch in the export options to choose whether to use the internal Pandoc or the system wide application.
+- Messages can now be filtered in the log viewer.
+- Windows can now be regularly closed using the `Cmd/Ctrl+W`-shortcut without interfering with the open tabs in the main window anymore.
+- On macOS, Zettlr will not force-show the main window anymore when you click on its Dock icon, but rather restore the default behaviour on macOS.
+- You can now zoom both Quicklook editors and the main editor independently using the zoom shortcuts.
+- Unlocked the ability to select "Follow Operating System" in the auto dark mode settings. _Please note that this setting might have no effect on certain linuxoid Operating Systems._
+- Modified the syntax highlighting multiplexer to mitigate performance issues on long lines
+
+## Under the Hood
+
+- Removed jQuery UI from the dialog classes completely.
+- Removed jQuery from the editor controller.
+- Removed jQuery from the updater.
+- Removed jQuery from the tag cloud dialog.
+- Removed jQuery from the stats dialog.
+- Removed jQuery from PDF preferences.
+- Removed jQuery from the CSS dialog.
+- Removed jQuery from the file manager.
+- Removed jQuery from the Pomodoro counter.
+- Fix a bug in the error handler during update checks.
+- Removed the timeout on the dictionary provider, as the dictionaries are likely to be loaded prior either way.
+- Force `electron-packager` to 15.2.0 to enable darwin/arm64 (Apple Silicon) builds.
+- Zettlr now detects Byte Order Marks (BOM) if present in a file.
+- The LogViewer got a new paint job: It's now based on Vue, much less resource-heavy and it includes filters to only show certain log levels.
+- Moved the log window creation to the Window Manager.
+- The window registration procedure now supports handling the toolbar which now also doubles as a title bar (if you don't want a toolbar).
+- Migrated the Quicklook windows to Vue.js.
+- Overhauled the print window.
+- Changed function name `askOverwriteFile` to `shouldOverwriteFile` to make it semantically more correct.
+- Aligned the exact behaviour of the `file-rename` and `file-new` commands to be the same when it comes to overwriting files.
+- Began implementing another new menu functionality: A `shortcut` property will send a shortcut-message to the currently focused window.
+- Migrated the Appearance Provider to TypeScript.
+- Renamed `darkTheme` to `darkMode`.
+- Migrated the Target Provider to TypeScript.
+- Transform the zoom-commands to shortcuts.
+- Move the `loadIcons` function to a more central place in the window registration module.
+- Moved the tree view functionality to its dedicated Vue component.
+- Fixed a regression error from updating LESS.
+
+>>>>>>> dfce9f39 (Modified multiplexer to solve issue 1523)
 # 1.8.4
 
 ## Deprecating 32 bit builds
